@@ -20,10 +20,20 @@
               <li class="nav-item" v-else>
                 <router-link class="nav-link" to="/login"> Login </router-link>
               </li>
-
               <li class="nav-item">
                 <router-link class="nav-link" to="/profile">
                   Profile
+                </router-link>
+              </li>
+              <li class="nav-item">
+                <router-link class="nav-link" to="/course">
+                  course
+                </router-link>
+              </li>
+              <!-- user是講師,才顯示這個按鈕 -->
+              <li class="nav-item" v-if='isInstructorLogin'>
+                <router-link class="nav-link" to="/postCourse">
+                  postCourse
                 </router-link>
               </li>
             </ul>
@@ -57,6 +67,9 @@ export default {
   computed: {
     isLogin() {
       return Object.keys(this.userData).length !== 0;
+    },
+    isInstructorLogin(){
+      return Object.keys(this.userData).length !== 0 && this.userData.foundUser.role ==='instructor'
     },
   },
 };
